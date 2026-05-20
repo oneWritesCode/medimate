@@ -28,22 +28,23 @@ export async function POST(req: Request) {
       messages: formattedMessages,
       model: "llama-3.3-70b-versatile",
       temperature: 0.7,
-      max_completion_tokens: 1024,
+      max_tokens: 1000,
       top_p: 1,
       stream: false,
-      response_format: { type: "json_object" } // Force JSON response
+      response_format: { type: "json_object" }
     });
 
-    const reply = chatCompletion.choices[0]?.message?.content || "";
+    const responseText = chatCompletion.choices[0]?.message?.content || "";
     
     // Attempt to parse to ensure it's valid JSON
     let parsedReply;
     try {
-      parsedReply = JSON.parse(reply);
+      const cleaned = responseText.replace(/```json|```/g, "").trim();
+      parsedReply = JSON.parse(cleaned);
     } catch (e) {
-      console.error("Failed to parse AI response as JSON:", reply);
+      console.error("Failed to parse AI response as JSON:", responseText);
       // If parsing fails, wrap it in an answer type to prevent frontend crash
-      parsedReply = { type: "answer", message: reply };
+      parsedReply = { type: "answer", message: responseText };
     }
 
     return NextResponse.json({ reply: parsedReply });

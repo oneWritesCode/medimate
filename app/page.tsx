@@ -1,260 +1,304 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
+import Link from "next/link";
 import {
-  Trash2,
+  Heart,
+  MessageSquare,
+  Pill,
+  ArrowRight,
   ShieldCheck,
-  ArrowUp,
-  Thermometer,
-  Brain,
-  Wind,
-  Activity,
-  Zap,
   Sparkles,
+  MapPin,
+  Compass,
+  CheckCircle,
+  Users,
+  Star,
+  Activity,
+  Stethoscope,
 } from "lucide-react";
-import ChatBubble from "@/components/ChatBubble";
-import TypingIndicator from "@/components/TypingIndicator";
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-  parsed?: {
-    type: "question" | "answer";
-    message: string;
-    options?: string[];
-    multiSelect?: boolean;
-  };
-}
+export default function LandingPage() {
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const featuresRef = useRef<HTMLDivElement>(null);
 
-const CATEGORIES = [
-  { label: "Fever", icon: Thermometer, color: "text-orange-500" },
-  { label: "Headache", icon: Brain, color: "text-purple-500" },
-  { label: "Cough & Cold", icon: Wind, color: "text-blue-500" },
-  { label: "Stomach Pain", icon: Activity, color: "text-green-500" },
-  { label: "Skin Issues", icon: Sparkles, color: "text-pink-500" },
-  { label: "Fatigue", icon: Zap, color: "text-yellow-500" },
-];
-
-export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: JSON.stringify({
-        type: "answer",
-        message:
-          "Hello. I'm MediMate 👋 How are you feeling today? Please describe your symptoms.",
-      }),
-      parsed: {
-        type: "answer",
-        message:
-          "Hello. I'm MediMate 👋 How are you feeling today? Please describe your symptoms.",
-      },
-    },
-  ]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, isLoading]);
-
-  const handleSend = async (forcedInput?: string) => {
-    const messageContent = forcedInput || input;
-    if (!messageContent.trim() || isLoading) return;
-
-    const userMessage: Message = { role: "user", content: messageContent };
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
-    if (!forcedInput) setInput("");
-    setIsLoading(true);
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: newMessages.map((m) => ({
-            role: m.role,
-            content:
-              m.role === "assistant" && m.parsed
-                ? JSON.stringify(m.parsed)
-                : m.content,
-          })),
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.reply) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content: JSON.stringify(data.reply),
-            parsed: data.reply,
-          },
-        ]);
-      } else {
-        throw new Error(data.error || "Failed to get response");
-      }
-    } catch (error: any) {
-      console.error("Error sending message:", error);
-      const errorMsg =
-        error.message ||
-        "I'm sorry, I'm having trouble connecting right now. Please try again.";
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: JSON.stringify({ type: "answer", message: errorMsg }),
-          parsed: { type: "answer", message: errorMsg },
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setIsSubscribed(true);
+      setTimeout(() => {
+        setIsSubscribed(false);
+        setEmail("");
+      }, 5000);
     }
   };
 
-  const handleOptionSelect = (selectedOptions: string[]) => {
-    const answerText = `My answer: ${selectedOptions.join(", ")}`;
-    handleSend(answerText);
-  };
-
-  const clearChat = () => {
-    setMessages([
-      {
-        role: "assistant",
-        content: JSON.stringify({
-          type: "answer",
-          message:
-            "Hello. I'm MediMate 👋 How are you feeling today? Please describe your symptoms.",
-        }),
-        parsed: {
-          type: "answer",
-          message:
-            "Hello. I'm MediMate 👋 How are you feeling today? Please describe your symptoms.",
-        },
-      },
-    ]);
+  const scrollToFeatures = () => {
+    featuresRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <main className="flex flex-col h-screen bg-black text-white selection:bg-white selection:text-black">
-      {/* Modern Minimalist Header - Dark Mode */}
-      <header className="flex items-center justify-between px-8 py-4 bg-black/80 backdrop-blur-md sticky top-0 z-20 border-b border-white/10">
-        <div className="flex flex-col">
-          <h1 className="text-lg font-bold tracking-tighter uppercase italic text-white">
-            MediMate
-          </h1>
-          <span className="text-[10px] text-gray-500 font-medium tracking-widest uppercase">
-            Precision Triage
+    <main className="min-h-screen bg-black flex flex-col items-center justify-between text-white selection:bg-white selection:text-black">
+      {/* 1. Header (Quiet Place Style) */}
+      <header className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-4 pb-2 flex items-center justify-between border-b border-white/5 bg-black/40 backdrop-blur-md sticky top-0 z-50">
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="w-9 h-9 bg-white/5 text-white rounded-xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+            <Heart
+              size={18}
+              strokeWidth={2.5}
+              fill="currentColor"
+              className="text-white"
+            />
+          </div>
+          <span className="text-lg font-black tracking-tighter italic uppercase text-white">
+            HealthBuddy
           </span>
-        </div>
+        </Link>
 
-        <button
-          onClick={clearChat}
-          className="group p-2.5 rounded-full hover:bg-white transition-all duration-300"
-          title="Reset Session"
+        <nav className="hidden md:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-white/70">
+          <button
+            onClick={scrollToFeatures}
+            className="hover:text-white uppercase transition-colors cursor-pointer"
+          >
+            Features
+          </button>
+          <Link href="/chat" className="hover:text-white transition-colors">
+            Symptom Checker
+          </Link>
+          <Link href="/medicine" className="hover:text-white transition-colors">
+            Medicine Analyzer
+          </Link>
+        </nav>
+
+        <Link
+          href="/chat"
+          className="bg-white text-black text-[9px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-gray-200 transition-all active:scale-95 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.1)]"
         >
-          <Trash2
-            size={18}
-            className="text-gray-600 group-hover:text-black transition-colors"
-          />
-        </button>
+          Start asking <ArrowRight size={12} strokeWidth={3} />
+        </Link>
       </header>
 
-      {/* Premium Chat Area - Dark Mode */}
-      <div className="flex-1 overflow-y-auto px-4 py-10 md:px-0 scrollbar-hide">
-        <div className="max-w-2xl mx-auto w-full flex flex-col">
-          {messages.map((msg, index) => (
-            <ChatBubble
-              key={index}
-              role={msg.role}
-              content={msg.content}
-              parsed={msg.parsed}
-              onOptionSelect={handleOptionSelect}
-              isLast={index === messages.length - 1}
+      {/* 2. Hero Section (Combined Image 2 & 3 Concepts) */}
+      <div className="max-w-4xl w-full text-center space-y-4 pt-18 pb-20 flex flex-col items-center">
+        {/* Interactive Pulse Brand Avatar with Floating Tag */}
+        <div className="relative group mb-4">
+          <div className="w-24 h-24 bg-[#0d0d0d] rounded-[2rem] shadow-[0_0_40px_-5px_rgba(255,255,255,0.1)] flex items-center justify-center text-white border border-white/10 relative transition-transform duration-500 group-hover:scale-105">
+            <Heart
+              size={44}
+              strokeWidth={2.5}
+              fill="currentColor"
+              className="animate-pulse"
             />
-          ))}
-
-          {/* Symptom Category Selector */}
-          {messages.length === 1 && !isLoading && (
-            <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-3 transition-all duration-700">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat.label}
-                  onClick={() =>
-                    handleSend(
-                      `I'm feeling like I have ${cat.label.toLowerCase()}`,
-                    )
-                  }
-                  className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-[#111] border border-white/5 hover:border-white/20 hover:bg-[#181818] transition-all duration-300 group"
-                >
-                  <cat.icon
-                    size={24}
-                    className={`${cat.color} opacity-80 group-hover:opacity-100 transition-opacity`}
-                  />
-                  <span className="text-[13px] font-medium text-gray-400 group-hover:text-white transition-colors">
-                    {cat.label}
-                  </span>
-                </button>
-              ))}
-            </div>
-          )}
-
-          {isLoading && (
-            <div className="flex justify-start mb-6">
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full border border-white/10 bg-[#111] text-white">
-                  <span className="text-[10px] font-bold">AI</span>
-                </div>
-                <TypingIndicator />
-              </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} className="h-10" />
-        </div>
-      </div>
-
-      {/* Floating Modern Input Area - Dark Mode */}
-      <div className="p-4 bg-linear-to-t from-black via-black to-transparent">
-        <div className="max-w-2xl mx-auto">
-          <div className="relative group shadow-[0_0_50px_-12px_rgba(255,255,255,0.1)] rounded-4xl overflow-hidden bg-[#111] border border-white/10 transition-all duration-500 focus-within:border-white/30 focus-within:ring-1 focus-within:ring-white/5">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Describe your symptoms with precision..."
-              className="w-full bg-transparent px-8 py-4 pr-20 focus:outline-none text-[15px] text-white placeholder:text-gray-600 transition-all"
-            />
-            <div className="absolute right-4 top-1/2 -translate-y-1/2">
-              <button
-                onClick={() => handleSend()}
-                disabled={!input.trim() || isLoading}
-                className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${
-                  !input.trim() || isLoading
-                    ? "bg-white/5 text-gray-700"
-                    : "bg-white text-black hover:scale-105 active:scale-95 shadow-lg shadow-white/10"
-                }`}
-              >
-                <ArrowUp size={20} strokeWidth={3} />
-              </button>
-            </div>
           </div>
-          <p className="text-center mt-4 text-[10px] text-gray-400 font-medium tracking-wide uppercase">
-            <span>
-              Artificial Intelligence • Not Medical Advice • Consult a
-              Professional
+          <div className="absolute -top-3 -right-8 bg-white text-black px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-lg border border-white/10 flex items-center gap-1 animate-bounce">
+            <Sparkles size={8} fill="currentColor" />
+            <span>HealthBuddy v1.2</span>
+          </div>
+        </div>
+
+        {/* High-End Serif/Sans Typography */}
+        <div className="space-y-4 max-w-3xl">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white leading-none uppercase italic">
+            Stop searching for symptoms.
+            <br />
+            <span className="underline underline-offset-2 decoration-white/30">
+              Start getting answers.
             </span>
+          </h1>
+          <p className="text-white/40 text-base md:text-sm font-medium max-w-xl mx-auto leading-relaxed capitalize">
+            Describe symptoms safely under clinically guided vectors or analyze
+            medications from a pitch-dark, highly-precise encyclopedia
+            dashboard.
           </p>
         </div>
+
+        {/* Social Proof Group Avatars */}
+        <div className="flex items-center gap-3 text-white/35 text-[9px] font-black uppercase tracking-widest">
+          <div className="flex -space-x-2">
+            {[Stethoscope, Heart, ShieldCheck].map((Icon, idx) => (
+              <div
+                key={idx}
+                className="w-6 h-6 rounded-full flex items-center justify-center text-white/60"
+              >
+                <Icon size={11} />
+              </div>
+            ))}
+          </div>
+          <span>Trusted by 14,800+ health conscious users</span>
+        </div>
+
+        {/* Double Call to Actions (Image 1 layout) */}
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-10">
+          <Link
+            href="/chat"
+            className="bg-white text-black font-black px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-gray-200 transition-all active:scale-95 uppercase tracking-widest text-xs shadow-lg shadow-white/5"
+          >
+            Start Chat <ArrowRight size={14} strokeWidth={3} />
+          </Link>
+          <Link
+            href="/medicine"
+            className="bg-[#0c0c0c] border border-white/10 text-white font-black px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-white/5 hover:border-white/20 transition-all active:scale-95 uppercase tracking-widest text-xs"
+          >
+            Scan Medicine
+          </Link>
+        </div>
       </div>
+
+      {/* 3. Three Features Grid Section (Image 1 & 3 layout) */}
+      <div
+        ref={featuresRef}
+        className="w-full max-w-7xl mx-auto px-6 md:px-12 border-t border-white/5 bg-[#030303]/50"
+      >
+        <div className="text-center mb-16 space-y-2">
+          <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
+            Engine Features
+          </h2>
+          <p className="text-3xl font-black uppercase italic tracking-tight">
+            Structured Healthcare Modules
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Card 1: Chat */}
+          <div className="bg-[#080808] border border-white/5 rounded-3xl p-8 shadow-2xl flex flex-col gap-6 group hover:border-white/20 transition-all">
+            <div className="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+              <MessageSquare size={22} strokeWidth={2.5} />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-black uppercase italic text-white">
+                Symptom Checker
+              </h3>
+              <p className="text-white/40 text-xs font-medium leading-relaxed">
+                Safely input symptomatology to trigger diagnostic
+                cross-examinations, scoring guidelines, and general care
+                directives.
+              </p>
+            </div>
+            <Link
+              href="/chat"
+              className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
+            >
+              Launch Checker <ArrowRight size={12} strokeWidth={3} />
+            </Link>
+          </div>
+
+          {/* Card 2: Medicine */}
+          <div className="bg-[#080808] border border-white/5 rounded-3xl p-8 shadow-2xl flex flex-col gap-6 group hover:border-white/20 transition-all">
+            <div className="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+              <Pill size={22} strokeWidth={2.5} />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-black uppercase italic text-white">
+                Medicine Scanner
+              </h3>
+              <p className="text-white/40 text-xs font-medium leading-relaxed">
+                Query prescription drugs with instant Levenshtein fuzzy
+                completion to unlock dosage indices, risk factors, and direct
+                purchase channels.
+              </p>
+            </div>
+            <Link
+              href="/medicine"
+              className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
+            >
+              Launch Scanner <ArrowRight size={12} strokeWidth={3} />
+            </Link>
+          </div>
+
+          {/* Card 3: Map */}
+          <div className="bg-[#080808] border border-white/5 rounded-3xl p-8 shadow-2xl flex flex-col gap-6 group hover:border-white/20 transition-all">
+            <div className="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+              <MapPin size={22} strokeWidth={2.5} />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-black uppercase italic text-white">
+                Geolocation Radar
+              </h3>
+              <p className="text-white/40 text-xs font-medium leading-relaxed">
+                Tap live browser coordinates to locate active primary care
+                clinics, hospitals, and licensed practitioners within 3
+                kilometers of your locale.
+              </p>
+            </div>
+            <Link
+              href="/chat"
+              className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
+            >
+              Explore Map <ArrowRight size={12} strokeWidth={3} />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Bottom Detailed Highlight Block (Image 3 Concept) */}
+      <div className="w-full max-w-4xl mx-auto px-6 pb-24">
+        <div className="bg-[#080808] border border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
+          <div className="space-y-4 flex-1">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">
+                Clinical Verification Engine
+              </span>
+            </div>
+            <h3 className="text-2xl font-black uppercase italic tracking-tight">
+              The New Era of Personal Triage
+            </h3>
+            <p className="text-white/40 text-xs leading-relaxed font-medium">
+              HealthBuddy combines clinical parameters with natural language,
+              executing highly relevant care recommendations in under two
+              seconds. Always consult a physician for prescription details.
+            </p>
+
+            <div className="pt-4 grid grid-cols-2 gap-4 text-left">
+              <div className="border-l-2 border-white/15 pl-4">
+                <p className="text-[9px] text-white/20 font-black uppercase tracking-widest">
+                  Retrieval speed
+                </p>
+                <p className="text-lg font-black uppercase text-white">
+                  Under 2s
+                </p>
+              </div>
+              <div className="border-l-2 border-white/15 pl-4">
+                <p className="text-[9px] text-white/20 font-black uppercase tracking-widest">
+                  Medical Accuracy
+                </p>
+                <p className="text-lg font-black uppercase text-white">
+                  OSM & Vector Linked
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="shrink-0 w-full md:w-56 bg-black border border-white/5 rounded-2xl p-5 flex flex-col gap-4 shadow-xl">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/60">
+                <Activity size={14} />
+              </div>
+              <div>
+                <p className="text-[9px] text-white/40 font-black uppercase tracking-widest leading-none">
+                  Diagnostic Triage
+                </p>
+                <span className="text-[11px] font-black text-white uppercase italic leading-none">
+                  Safe Path Guidance
+                </span>
+              </div>
+            </div>
+            <p className="text-[10px] leading-relaxed text-white/35 font-bold uppercase tracking-wider border-t border-white/5 pt-3">
+              "Providing structural care suggestions before primary clinic
+              visits."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 5. Minimalist Footer Disclaimer */}
+      <footer className="w-full border-t border-white/5 py-8 text-center bg-black">
+        <p className="text-[9px] text-white/20 font-black uppercase tracking-[0.25em] max-w-lg mx-auto leading-relaxed">
+          Not a substitute for professional medical advice. Always consult a
+          licensed clinician for emergencies.
+        </p>
+      </footer>
     </main>
   );
 }
