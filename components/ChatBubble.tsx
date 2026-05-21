@@ -250,15 +250,20 @@ const ChatBubble = ({
         {/* MCQ Options (styled as high-end outlines turning solid on active) */}
         {!isUser && parsed?.type === 'question' && parsed.options && !submitted && isLast && (
           <div className="flex flex-wrap gap-2.5 mt-2.5">
-            {parsed.options.map((option) => (
+            {parsed.options.map((option, index) => (
               <button
-                key={option}
-                onClick={() => handleOptionClick(option)}
-                className={`px-3 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-300 transform active:scale-95 cursor-pointer ${
+                key={`option-${index}-${option}`}
+                disabled={submitted}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleOptionClick(option);
+                }}
+                className={`px-3 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-300 transform active:scale-95 cursor-pointer pointer-events-auto ${
                   selectedOptions.includes(option)
                     ? 'bg-white text-black border-white shadow-lg shadow-white/10'
                     : 'border-white/10 text-white/50 bg-[#0c0c0c] hover:border-white/30 hover:text-white'
-                }`}
+                } ${submitted ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {option}
               </button>

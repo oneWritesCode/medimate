@@ -43,7 +43,7 @@ export default function LandingPage() {
       {/* 1. Header (Quiet Place Style) */}
       <header className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-4 pb-2 flex items-center justify-between border-b border-white/5 bg-black/40 backdrop-blur-md sticky top-0 z-50">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-white/5 text-white rounded-xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+          <div className="w-9 h-9 bg-white/5 text-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
             <Heart
               size={18}
               strokeWidth={2.5}
@@ -83,7 +83,7 @@ export default function LandingPage() {
       <div className="max-w-4xl w-full text-center space-y-4 pt-18 pb-20 flex flex-col items-center">
         {/* Interactive Pulse Brand Avatar with Floating Tag */}
         <div className="relative group mb-4">
-          <div className="w-24 h-24 bg-[#0d0d0d] rounded-[2rem] shadow-[0_0_40px_-5px_rgba(255,255,255,0.1)] flex items-center justify-center text-white border border-white/10 relative transition-transform duration-500 group-hover:scale-105">
+          <div className="w-20 h-20 bg-[#0d0d0d] rounded-[1.5rem] shadow-[0_0_40px_-5px_rgba(255,255,255,0.1)] flex items-center justify-center text-white border border-white/10 relative transition-transform duration-500 group-hover:scale-105">
             <Heart
               size={44}
               strokeWidth={2.5}
@@ -91,7 +91,7 @@ export default function LandingPage() {
               className="animate-pulse"
             />
           </div>
-          <div className="absolute -top-3 -right-8 bg-white text-black px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-lg border border-white/10 flex items-center gap-1 animate-bounce">
+          <div className="absolute -top-3 -right-15 bg-white text-black px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-lg border border-white/10 flex items-center gap-1 animate-bounce">
             <Sparkles size={8} fill="currentColor" />
             <span>HealthBuddy v1.2</span>
           </div>
@@ -148,7 +148,7 @@ export default function LandingPage() {
       {/* 3. Three Features Grid Section (Image 1 & 3 layout) */}
       <div
         ref={featuresRef}
-        className="w-full max-w-7xl mx-auto px-6 md:px-12 border-t border-white/5 bg-[#030303]/50"
+        className="w-full max-w-7xl mx-auto px-6 md:px-12 bg-[#030303]/50"
       >
         <div className="text-center mb-16 space-y-2">
           <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
@@ -159,7 +159,7 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
           {/* Card 1: Chat */}
           <div className="bg-[#080808] border border-white/5 rounded-3xl p-8 shadow-2xl flex flex-col gap-6 group hover:border-white/20 transition-all">
             <div className="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
@@ -177,7 +177,7 @@ export default function LandingPage() {
             </div>
             <Link
               href="/chat"
-              className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
+              className="text-[10px] font-black uppercase tracking-widest text-white/70 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
             >
               Launch Checker <ArrowRight size={12} strokeWidth={3} />
             </Link>
@@ -200,7 +200,7 @@ export default function LandingPage() {
             </div>
             <Link
               href="/medicine"
-              className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
+              className="text-[10px] font-black uppercase tracking-widest text-white/70 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
             >
               Launch Scanner <ArrowRight size={12} strokeWidth={3} />
             </Link>
@@ -223,7 +223,7 @@ export default function LandingPage() {
             </div>
             <Link
               href="/chat"
-              className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
+              className="text-[10px] font-black uppercase tracking-widest text-white/70 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
             >
               Explore Map <ArrowRight size={12} strokeWidth={3} />
             </Link>
@@ -232,7 +232,7 @@ export default function LandingPage() {
       </div>
 
       {/* 4. Bottom Detailed Highlight Block (Image 3 Concept) */}
-      <div className="w-full max-w-4xl mx-auto px-6 pb-24">
+      <div className="w-full max-w-4xl mx-auto px-6 pb-18">
         <div className="bg-[#080808] border border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
           <div className="space-y-4 flex-1">
             <div className="flex items-center gap-2">
@@ -294,7 +294,7 @@ export default function LandingPage() {
 
       {/* 5. Minimalist Footer Disclaimer */}
       <footer className="w-full border-t border-white/5 py-8 text-center bg-black">
-        <p className="text-[9px] text-white/20 font-black uppercase tracking-[0.25em] max-w-lg mx-auto leading-relaxed">
+        <p className="text-[10px] text-white/60 font-black uppercase tracking-[0.25em] max-w-lg mx-auto leading-relaxed">
           Not a substitute for professional medical advice. Always consult a
           licensed clinician for emergencies.
         </p>
