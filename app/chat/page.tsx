@@ -19,10 +19,13 @@ import {
   Sparkle,
   X,
   Info,
+  ClipboardList,
+  CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
 import ChatBubble from "@/components/ChatBubble";
 import TypingIndicator from "@/components/TypingIndicator";
+import { saveSymptomLog } from "@/lib/historyUtils";
 
 interface Message {
   role: "user" | "assistant";
@@ -99,12 +102,12 @@ export default function ChatPage() {
       content: JSON.stringify({
         type: "answer",
         message:
-          "Hello. I'm HealthBuddy 👋 How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+          "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
       }),
       parsed: {
         type: "answer",
         message:
-          "Hello. I'm HealthBuddy 👋 How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+          "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
       },
     },
   ]);
@@ -119,12 +122,48 @@ export default function ChatPage() {
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef<any>(null);
 
+  const [showAutoToast, setShowAutoToast] = useState(false);
+  const [extractedData, setExtractedData] = useState<any>(null);
+
+  const autoCaptureData = async (assistantMessage: string) => {
+    try {
+      const response = await fetch("/api/history/extract", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: assistantMessage }),
+      });
+      const data = await response.json();
+      
+      if (!data.error) {
+        saveSymptomLog({
+          condition: data.condition,
+          symptoms: data.symptoms,
+          medicines: data.medicines,
+          severity: data.severity,
+          feelingScore: data.feelingScore,
+          isAutoCaptured: true
+        });
+        
+        setExtractedData(data);
+        setShowAutoToast(true);
+        setTimeout(() => setShowAutoToast(false), 3000);
+      }
+    } catch (error) {
+      console.error("Auto-capture failed:", error);
+    }
+  };
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
     scrollToBottom();
+    
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage?.role === 'assistant' && lastMessage.parsed?.type === 'answer' && messages.length > 2) {
+      autoCaptureData(lastMessage.parsed.message);
+    }
   }, [messages, isLoading]);
 
   // Set up voice speech recognition
@@ -244,12 +283,12 @@ export default function ChatPage() {
         content: JSON.stringify({
           type: "answer",
           message:
-            "Hello. I'm HealthBuddy 👋 How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+            "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
         }),
         parsed: {
           type: "answer",
           message:
-            "Hello. I'm HealthBuddy 👋 How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+            "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
         },
       },
     ]);
@@ -346,14 +385,14 @@ export default function ChatPage() {
 
         <button
           onClick={clearChat}
-          className="group p-2.5 rounded-xl bg-[#0c0c0c] hover:bg-white hover:text-black transition-all border border-white/5 text-white/40 flex items-center gap-2 cursor-pointer"
+          className="group p-2.5 rounded-xl bg-[#0c0c0c] hover:bg-white hover:text-black transition-all border border-white/5 text-white/60 flex items-center gap-2 cursor-pointer"
           title="Reset Conversation"
         >
           <Trash2
             size={15}
             className="group-hover:text-black transition-colors"
           />
-          <span className="hidden sm:inline text-[9px] font-black uppercase tracking-widest">
+          <span className="hidden sm:inline text-[10px] font-black uppercase tracking-widest">
             Reset
           </span>
         </button>
@@ -415,6 +454,7 @@ export default function ChatPage() {
       {/* Input Console & Actions (inspired by Image 1 & Image 2) */}
       <div className="fixed bottom-0 w-full">
         <div className="max-w-2xl mx-auto flex flex-col gap-4 relative bg-black rounded-t-3xl">
+
           {/* Settings Explanations/Tooltip Sheets inside layout */}
           {showTriageInfo && (
             <div className="absolute bottom-28 left-4 right-4 bg-[#0d0d0d] border border-white/10 rounded-2xl p-5 shadow-2xl z-50 animate-in slide-in-from-bottom-2 duration-300">
@@ -425,7 +465,7 @@ export default function ChatPage() {
                 </span>
                 <button
                   onClick={() => setShowTriageInfo(false)}
-                  className="text-white/40 hover:text-white transition-colors cursor-pointer"
+                  className="text-white/60 hover:text-white transition-colors cursor-pointer"
                 >
                   <X size={14} />
                 </button>
@@ -448,7 +488,7 @@ export default function ChatPage() {
                 </span>
                 <button
                   onClick={() => setShowModelInfo(false)}
-                  className="text-white/40 hover:text-white transition-colors cursor-pointer"
+                  className="text-white/60 hover:text-white transition-colors cursor-pointer"
                 >
                   <X size={14} />
                 </button>
@@ -491,12 +531,12 @@ export default function ChatPage() {
                   ? "Listening closely... speak now"
                   : "Describe your symptoms in detail..."
               }
-              className={`w-full bg-transparent px-6 py-5 pb-16 focus:outline-none text-[14px] text-white placeholder:text-white/20 transition-all ${isListening ? "text-white/50 italic animate-pulse" : ""}`}
+              className={`w-full bg-transparent px-6 py-5 pb-16 focus:outline-none text-[14px] text-white placeholder:text-white/60 transition-all ${isListening ? "text-white/60 italic animate-pulse" : ""}`}
             />
 
             {/* Bottom bar controls inside input container */}
             <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-white/35 text-[9px] font-black uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-white/60 text-[10px] font-black uppercase tracking-widest">
                 <button
                   onClick={() => {
                     setShowTriageInfo(!showTriageInfo);
@@ -524,7 +564,7 @@ export default function ChatPage() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleVoiceInput}
-                  className={`p-2 transition-colors cursor-pointer ${isListening ? "text-red-500 hover:text-red-400 animate-bounce" : "text-white/30 hover:text-white"}`}
+                  className={`p-2 transition-colors cursor-pointer ${isListening ? "text-red-500 hover:text-red-400 animate-bounce" : "text-white/60 hover:text-white"}`}
                   title={isListening ? "Stop Voice Input" : "Start Voice Input"}
                 >
                   {isListening ? <MicOff size={16} /> : <Mic size={16} />}
@@ -534,7 +574,7 @@ export default function ChatPage() {
                   disabled={!input.trim() || isLoading}
                   className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 cursor-pointer ${
                     !input.trim() || isLoading
-                      ? "bg-white/5 text-white/20"
+                      ? "bg-white/5 text-white/60"
                       : "bg-white text-black hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
                   }`}
                   title="Send Message"
@@ -545,12 +585,30 @@ export default function ChatPage() {
             </div>
           </div>
 
-          <p className="text-center text-[8px] text-white/50 font-black uppercase tracking-[0.25em] flex items-center justify-center gap-2 mb-2">
-            <ShieldCheck size={12} className="text-white/50" />
+          <p className="text-center text-[8px] text-white/60 font-black uppercase tracking-[0.25em] flex items-center justify-center gap-2 mb-2">
+            <ShieldCheck size={12} className="text-white/60" />
             <span>Encrypted • Private Triage • Not Medical Advice</span>
           </p>
         </div>
       </div>
+
+
+      {showAutoToast && (
+        <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-bottom-5 duration-300">
+          <div className="bg-[#0d0d0d] rounded-xl shadow-2xl border border-white/10 border-l-4 border-emerald-500 p-4 flex items-center gap-3">
+            <div className="bg-emerald-500/10 p-2 rounded-lg">
+              <ClipboardList className="text-emerald-500" size={18} />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-white">Health data saved to your history</p>
+              <p className="text-[10px] text-white/60">Auto-captured from your recent checkup</p>
+            </div>
+            <button onClick={() => setShowAutoToast(false)} className="ml-2 text-white/60 hover:text-white">
+              <X size={14} />
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

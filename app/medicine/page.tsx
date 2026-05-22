@@ -280,21 +280,21 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
         <div className="flex flex-col items-center gap-8">
           <Link
             href="/"
-            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/20 transition-all"
+            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/20 transition-all"
           >
             <Heart size={16} fill="currentColor" className="text-white" />
           </Link>
           <div className="w-8 h-px bg-white/5"></div>
           <Link
             href="/"
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-white/30 hover:text-white transition-all"
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-white/60 hover:text-white transition-all"
             title="Home"
           >
             <Home size={18} />
           </Link>
           <Link
             href="/chat"
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-white/30 hover:text-white transition-all"
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-white/60 hover:text-white transition-all"
             title="Symptom Checker"
           >
             <MessageSquare size={18} />
@@ -310,7 +310,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
 
         <div className="flex flex-col items-center gap-4">
           <button
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-white/30 hover:text-white transition-colors cursor-pointer"
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer"
             title="Settings"
           >
             <Settings size={18} />
@@ -324,14 +324,14 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
         <header className="w-full h-16  flex items-center justify-between px-6 md:px-12 sticky top-16 z-30">
           <div className="w-full max-w-lg relative rounded-2xl shadow-md shadow-white/20" ref={searchContainerRef}>
             <div className="relative flex items-center">
-              <Search size={16} className="absolute left-4 text-white/20" />
+              <Search size={16} className="absolute left-4 text-white/60" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="Search medications... e.g. Paracetamol, Ibuprofen"
-                className="w-full bg-[#080808] border border-white/5 rounded-full py-2 pl-11 pr-12 text-xs text-white placeholder:text-white/25 focus:outline-none focus:border-white/20 transition-all"
+                className="w-full bg-[#080808] border border-white/5 rounded-full py-2 pl-11 pr-12 text-xs text-white placeholder:text-white/60 focus:outline-none focus:border-white/20 transition-all"
               />
               {suggestions.length > 0 && showSuggestions && (
                 <div className="absolute top-11 left-0 right-0 bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-2xl z-50 overflow-hidden">
@@ -339,10 +339,10 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                     <button
                       key={idx}
                       onClick={() => handleSuggestionClick(med)}
-                      className="w-full text-left px-5 py-3 hover:bg-white/5 text-[10px] font-black uppercase tracking-widest text-white/50 hover:text-white transition-colors border-b border-white/5 last:border-none flex items-center justify-between cursor-pointer"
+                      className="w-full text-left px-5 py-3 hover:bg-white/5 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-colors border-b border-white/5 last:border-none flex items-center justify-between cursor-pointer"
                     >
                       <span>{med}</span>
-                      <ChevronRight size={12} className="text-white/20" />
+                      <ChevronRight size={12} className="text-white/60" />
                     </button>
                   ))}
                 </div>
@@ -352,7 +352,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
 
           {/* <div className="flex items-center gap-6">
             <button
-              className="relative text-white/40 hover:text-white transition-colors cursor-pointer"
+              className="relative text-white/60 hover:text-white transition-colors cursor-pointer"
               title="Notifications"
             >
               <Bell size={18} />
@@ -363,7 +363,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
               <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 text-[10px] font-black">
                 DR
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-white/50 hidden sm:inline">
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/60 hidden sm:inline">
                 Dr. Deepak
               </span>
             </div>
@@ -399,7 +399,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                 <p className="text-white text-sm font-black uppercase tracking-widest">
                   Consulting Encyclopedia...
                 </p>
-                <p className="text-white/30 text-[8px] font-black uppercase tracking-widest">
+                <p className="text-white/60 text-[8px] font-black uppercase tracking-widest">
                   loading exact clinical facts
                 </p>
               </div>
@@ -408,16 +408,16 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
 
           {error && (
             <div className="max-w-md mx-auto bg-[#080808] border border-white/5 rounded-[2.5rem] p-10 flex flex-col items-center text-center space-y-4 shadow-xl">
-              <AlertCircle size={40} className="text-white/40" />
+              <AlertCircle size={40} className="text-white/60" />
               <div className="space-y-1">
                 <h3 className="text-white font-black uppercase tracking-widest text-sm">
                   Medication Not Found
                 </h3>
-                <p className="text-white/55 text-xs font-bold leading-relaxed">
+                <p className="text-white/60 text-xs font-bold leading-relaxed">
                   {error}
                 </p>
               </div>
-              <p className="text-white/20 text-[8px] font-black uppercase tracking-[0.2em] pt-2">
+              <p className="text-white/60 text-[8px] font-black uppercase tracking-[0.2em] pt-2">
                 Try searching Crocin, Paracetamol, or Montair
               </p>
             </div>
@@ -436,7 +436,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                       onClick={() =>
                         setActivePackageSlide((prev) => (prev === 0 ? 1 : 0))
                       }
-                      className="w-8 h-8 rounded-full border border-white/10 hover:border-white/20 flex items-center justify-center text-white/40 hover:text-white transition-colors cursor-pointer"
+                      className="w-8 h-8 rounded-full border border-white/10 hover:border-white/20 flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer"
                     >
                       <ChevronLeft size={16} />
                     </button>
@@ -444,7 +444,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                       onClick={() =>
                         setActivePackageSlide((prev) => (prev === 0 ? 1 : 0))
                       }
-                      className="w-8 h-8 rounded-full border border-white/10 hover:border-white/20 flex items-center justify-center text-white/40 hover:text-white transition-colors cursor-pointer"
+                      className="w-8 h-8 rounded-full border border-white/10 hover:border-white/20 flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer"
                     >
                       <ChevronRightIcon size={16} />
                     </button>
@@ -455,7 +455,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                     <div className="absolute top-0 right-0 w-28 h-28 bg-white/5 rounded-full blur-2xl -mr-8 -mt-8"></div>
 
                     <div className="flex items-start justify-between z-10">
-                      <span className="text-[7px] font-black uppercase tracking-widest text-white/40">
+                      <span className="text-[7px] font-black uppercase tracking-widest text-white/60">
                         HealthBuddy RX
                       </span>
                       <Heart
@@ -472,13 +472,13 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                           className="group-hover:rotate-45 transition-transform duration-500"
                         />
                       </div>
-                      <span className="text-[10px] text-white/20 font-black uppercase tracking-[0.25em]">
+                      <span className="text-[10px] text-white/60 font-black uppercase tracking-[0.25em]">
                         Formula-Index
                       </span>
                     </div>
 
                     <div className="z-10 flex flex-col gap-1">
-                      <span className="text-[6px] font-black uppercase tracking-widest text-white/30">
+                      <span className="text-[6px] font-black uppercase tracking-widest text-white/60">
                         Clinical drug compound
                       </span>
                       <span className="text-xs font-black uppercase tracking-wider text-white line-clamp-1 italic">
@@ -499,12 +499,12 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                     <h2 className="text-4xl md:text-5xl font-black text-white leading-none tracking-tight uppercase italic">
                       {result.name}
                     </h2>
-                    <p className="text-white/50 text-xs font-black uppercase tracking-[0.2em]">
+                    <p className="text-white/60 text-xs font-black uppercase tracking-[0.2em]">
                       {result.genericName}
                     </p>
                   </div>
 
-                  <p className="text-white/45 text-xs md:text-sm leading-relaxed max-w-2xl font-medium">
+                  <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-2xl font-medium">
                     {result.description}
                   </p>
 
@@ -521,7 +521,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
 
                     <button
                       onClick={handleDownload}
-                      className="w-11 h-11 rounded-full border border-white/10 text-white/40 hover:border-white/20 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                      className="w-11 h-11 rounded-full border border-white/10 text-white/60 hover:border-white/20 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
                       title="Download Clinical Prescription Card"
                     >
                       <Download size={15} />
@@ -535,7 +535,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                 {/* Left Column: Full description details & doctor review card */}
                 <div className="space-y-8">
                   <div className="space-y-3">
-                    <h4 className="text-[14px] text-white/80 font-black uppercase tracking-[0.25em] text-white/30">
+                    <h4 className="text-[14px] text-white/80 font-black uppercase tracking-[0.25em] text-white/60">
                       Description & Use Cases
                     </h4>
                     <div className="space-y-4">
@@ -566,7 +566,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                           Verified by Dr. Roberto Jordan (MD)
                         </h5>
                       </div>
-                      <p className="text-[11px] leading-relaxed text-white/50 font-medium">
+                      <p className="text-[11px] leading-relaxed text-white/60 font-medium">
                         "{result.name} remains highly therapeutic for immediate
                         mitigation of general symptoms. Exercise precaution
                         under clinical dosages, specifically avoiding alcohol
@@ -595,14 +595,14 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
                     </h5>
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2 text-white/65">
-                        <Clock size={14} className="text-white/40" />
+                        <Clock size={14} className="text-white/60" />
                         <span className="text-[11px] font-black uppercase tracking-widest">
                           {result.dosage.frequency}
                         </span>
                       </div>
                       <div className="w-1.5 h-1.5 rounded-full bg-white/10"></div>
                       <div className="flex items-center gap-2 text-white/65">
-                        <Stethoscope size={14} className="text-white/40" />
+                        <Stethoscope size={14} className="text-white/60" />
                         <span className="text-[11px] font-black uppercase tracking-widest">
                           {result.dosage.timing}
                         </span>
@@ -650,13 +650,13 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
           {/* Initial Search Placeholder State (Matches Book Cover layout) */}
           {!result && !loading && !error && (
             <div className="min-h-[60vh] flex flex-col items-center justify-center text-center py-16 animate-in fade-in duration-500">
-              <div className="w-20 h-20 bg-[#080808] border border-white/5 text-white/20 rounded-[2rem] flex items-center justify-center mb-8 shadow-2xl">
+              <div className="w-20 h-20 bg-[#080808] border border-white/5 text-white/60 rounded-[2rem] flex items-center justify-center mb-8 shadow-2xl">
                 <Pill size={38} className="animate-pulse" />
               </div>
               <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">
                 Encyclopedia Selected
               </h3>
-              <p className="text-white/40 text-xs font-medium max-w-xs mx-auto leading-relaxed">
+              <p className="text-white/60 text-xs font-medium max-w-xs mx-auto leading-relaxed">
                 Query medication parameters in the top bar to display detailed
                 formula cards, verification review slips, and purchase linkages.
               </p>

@@ -262,7 +262,7 @@ const ChatBubble = ({
                 className={`px-3 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-300 transform active:scale-95 cursor-pointer pointer-events-auto ${
                   selectedOptions.includes(option)
                     ? 'bg-white text-black border-white shadow-lg shadow-white/10'
-                    : 'border-white/10 text-white/50 bg-[#0c0c0c] hover:border-white/30 hover:text-white'
+                    : 'border-white/10 text-white/60 bg-[#0c0c0c] hover:border-white/30 hover:text-white'
                 } ${submitted ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {option}
@@ -289,11 +289,11 @@ const ChatBubble = ({
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex flex-col">
                         <span className="font-black text-sm tracking-tight uppercase italic text-white">{med.name}</span>
-                        <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest mt-0.5">{med.genericName}</span>
+                        <span className="text-[10px] font-bold text-white/60 uppercase tracking-widest mt-0.5">{med.genericName}</span>
                       </div>
-                      <ShoppingCart size={15} className="text-white/20 group-hover:text-white transition-colors" />
+                      <ShoppingCart size={15} className="text-white/60 group-hover:text-white transition-colors" />
                     </div>
-                    <p className="text-[12px] font-medium leading-relaxed text-white/50 mb-6">{med.use}</p>
+                    <p className="text-[12px] font-medium leading-relaxed text-white/60 mb-6">{med.use}</p>
                   </div>
                   <div className="flex gap-2.5">
                     {[
@@ -306,7 +306,7 @@ const ChatBubble = ({
                         href={store.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 bg-white text-black text-[9px] font-black uppercase tracking-widest py-3 rounded-lg text-center hover:bg-gray-200 transition-all active:scale-95 shadow-sm cursor-pointer"
+                        className="flex-1 bg-white text-black text-[10px] font-black uppercase tracking-widest py-3 rounded-lg text-center hover:bg-gray-200 transition-all active:scale-95 shadow-sm cursor-pointer"
                       >
                         {store.name}
                       </a>
@@ -332,7 +332,7 @@ const ChatBubble = ({
               </button>
             ) : doctors.length > 0 ? (
               <>
-                <div className="flex items-center gap-2 text-[9px] font-bold text-white/40 uppercase tracking-widest">
+                <div className="flex items-center gap-2 text-[10px] font-bold text-white/60 uppercase tracking-widest">
                   <Info size={11} />
                   Clinics found via OpenStreetMap
                 </div>
@@ -342,7 +342,7 @@ const ChatBubble = ({
                       <div>
                         <h4 className="text-sm font-black text-white line-clamp-1 uppercase italic">{doc.name}</h4>
                       </div>
-                      <p className="text-[11px] leading-relaxed text-white/40 line-clamp-2 min-h-[2.5rem] font-medium">{doc.address}</p>
+                      <p className="text-[11px] leading-relaxed text-white/60 line-clamp-2 min-h-[2.5rem] font-medium">{doc.address}</p>
                       <a
                         href={doc.directionsUrl}
                         target="_blank"
@@ -358,7 +358,7 @@ const ChatBubble = ({
               </>
             ) : (
               <div className="bg-[#0c0c0c] border border-white/5 rounded-2xl p-5 flex flex-col gap-4 shadow-2xl">
-                <p className="text-xs text-white/40 font-medium">
+                <p className="text-xs text-white/60 font-medium">
                   No clinics found nearby. Try searching on Practo or Google Maps for more options.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-2">

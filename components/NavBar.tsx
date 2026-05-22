@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Heart, MessageSquare, Pill, Menu, X } from "lucide-react";
+import {
+  Heart,
+  MessageSquare,
+  Pill,
+  Menu,
+  X,
+  ClipboardList,
+  ShieldAlert,
+} from "lucide-react";
 import { useState } from "react";
 
 const NavBar = () => {
@@ -13,12 +21,14 @@ const NavBar = () => {
   if (pathname === "/") return null;
 
   const navItems = [
-    { href: "/chat", icon: MessageSquare },
-    { href: "/medicine", icon: Pill },
+    { href: "/chat", icon: MessageSquare, name: "Chat" },
+    { href: "/medicine", icon: Pill, name: "Medicine" },
+    { href: "/history", icon: ClipboardList, name: "health History" },
+    { href: "/firstaid", icon: ShieldAlert, name: "First Aid" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 py-2 bg-black/80 backdrop-blur-md z-50 flex items-center justify-between px-6 md:px-12 shadow-2xl">
+    <nav className="fixed top-0 left-0 right-0 py-2 bg-black/80 backdrop-blur-md z-50 flex items-center justify-between px-6 md:px-12 shadow-2xl border-b border-white/5">
       {/* Left Side */}
       <div className="flex items-center gap-8">
         <Link href="/" className="flex items-center gap-2 group">
@@ -26,29 +36,30 @@ const NavBar = () => {
             <Heart size={20} strokeWidth={2.5} fill="currentColor" />
           </div>
           <span className="text-xl font-black tracking-tighter italic uppercase text-white">
-            medimate
+            HealthBuddy
           </span>
         </Link>
-        {/* <Link href="/" className="hidden md:block text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors">
-          Home
-        </Link> */}
       </div>
 
       {/* Right Side - Desktop */}
-      <div className="hidden md:flex items-center">
+      <div className="hidden md:flex items-center gap-2">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
+              title={item.name}
+              className={`flex items-center gap-2 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
                 isActive
-                  ? " border border-white/20 bg-white/20 ext-black shadow-lg shadow-white/10"
-                  : "text-white/40 border border-white/5 hover:border-white/20 hover:text-white"
+                  ? "bg-white text-black shadow-lg shadow-white/10 px-3 "
+                  : "text-white/60 border border-white/5 hover:border-white/20 hover:text-white px-1"
               }`}
             >
               <item.icon size={14} strokeWidth={isActive ? 3 : 2} />
+              <span className={`${isActive ? "block" : "hidden"} transition-all duration-400`}>
+                {item.name}
+              </span>
             </Link>
           );
         })}
@@ -67,7 +78,7 @@ const NavBar = () => {
         <div className="md:hidden absolute top-16 left-0 right-0 bg-black border-b border-white/10 p-6 flex flex-col gap-4 shadow-2xl animate-in slide-in-from-top-4 duration-300">
           <Link
             href="/"
-            className="text-xs font-black uppercase tracking-widest text-white/40"
+            className="text-xs font-black uppercase tracking-widest text-white/60"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
@@ -82,10 +93,11 @@ const NavBar = () => {
                 className={`flex items-center gap-3 p-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all ${
                   isActive
                     ? "bg-white/10 text-white"
-                    : "text-white/40 hover:bg-white/5"
+                    : "text-white/60 hover:bg-white/5"
                 }`}
               >
                 <item.icon size={18} strokeWidth={2.5} />
+                {item.name}
               </Link>
             );
           })}

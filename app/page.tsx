@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
   Heart,
@@ -9,19 +9,24 @@ import {
   ArrowRight,
   ShieldCheck,
   Sparkles,
-  MapPin,
-  Compass,
-  CheckCircle,
-  Users,
-  Star,
   Activity,
   Stethoscope,
+  ShieldAlert,
+  ClipboardList,
+  Flame,
+  BarChart,
 } from "lucide-react";
+import { getStreak } from "@/lib/historyUtils";
 
 export default function LandingPage() {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [streak, setStreak] = useState(0);
   const featuresRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setStreak(getStreak());
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,11 +74,14 @@ export default function LandingPage() {
           <Link href="/medicine" className="hover:text-white transition-colors">
             Medicine Analyzer
           </Link>
+          <Link href="/firstaid" className="hover:text-white transition-colors">
+            First Aid Guide
+          </Link>
         </nav>
 
         <Link
           href="/chat"
-          className="bg-white text-black text-[9px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-gray-200 transition-all active:scale-95 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+          className="bg-white text-black text-[10px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-gray-200 transition-all active:scale-95 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.1)]"
         >
           Start asking <ArrowRight size={12} strokeWidth={3} />
         </Link>
@@ -106,7 +114,7 @@ export default function LandingPage() {
               Start getting answers.
             </span>
           </h1>
-          <p className="text-white/40 text-base md:text-sm font-medium max-w-xl mx-auto leading-relaxed capitalize">
+          <p className="text-white/60 text-base md:text-sm font-medium max-w-xl mx-auto leading-relaxed capitalize">
             Describe symptoms safely under clinically guided vectors or analyze
             medications from a pitch-dark, highly-precise encyclopedia
             dashboard.
@@ -114,7 +122,7 @@ export default function LandingPage() {
         </div>
 
         {/* Social Proof Group Avatars */}
-        <div className="flex items-center gap-3 text-white/35 text-[9px] font-black uppercase tracking-widest">
+        <div className="flex items-center gap-3 text-white/60 text-[10px] font-black uppercase tracking-widest">
           <div className="flex -space-x-2">
             {[Stethoscope, Heart, ShieldCheck].map((Icon, idx) => (
               <div
@@ -151,7 +159,7 @@ export default function LandingPage() {
         className="w-full max-w-7xl mx-auto px-6 md:px-12 bg-[#030303]/50"
       >
         <div className="text-center mb-16 space-y-2">
-          <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
+          <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/60">
             Engine Features
           </h2>
           <p className="text-3xl font-black uppercase italic tracking-tight">
@@ -159,7 +167,7 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
           {/* Card 1: Chat */}
           <div className="bg-[#080808] border border-white/5 rounded-3xl p-8 shadow-2xl flex flex-col gap-6 group hover:border-white/20 transition-all">
             <div className="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
@@ -169,10 +177,9 @@ export default function LandingPage() {
               <h3 className="text-lg font-black uppercase italic text-white">
                 Symptom Checker
               </h3>
-              <p className="text-white/40 text-xs font-medium leading-relaxed">
+              <p className="text-white/60 text-xs font-medium leading-relaxed">
                 Safely input symptomatology to trigger diagnostic
-                cross-examinations, scoring guidelines, and general care
-                directives.
+                cross-examinations and general care directives.
               </p>
             </div>
             <Link
@@ -192,10 +199,9 @@ export default function LandingPage() {
               <h3 className="text-lg font-black uppercase italic text-white">
                 Medicine Scanner
               </h3>
-              <p className="text-white/40 text-xs font-medium leading-relaxed">
+              <p className="text-white/60 text-xs font-medium leading-relaxed">
                 Query prescription drugs with instant Levenshtein fuzzy
-                completion to unlock dosage indices, risk factors, and direct
-                purchase channels.
+                completion to unlock dosage indices and risk factors.
               </p>
             </div>
             <Link
@@ -206,26 +212,47 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          {/* Card 3: Map */}
+          {/* Card 3: First Aid */}
           <div className="bg-[#080808] border border-white/5 rounded-3xl p-8 shadow-2xl flex flex-col gap-6 group hover:border-white/20 transition-all">
-            <div className="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
-              <MapPin size={22} strokeWidth={2.5} />
+            <div className="w-12 h-12 bg-white/5 text-red-500 rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+              <ShieldAlert size={22} strokeWidth={2.5} />
             </div>
             <div className="space-y-2">
               <h3 className="text-lg font-black uppercase italic text-white">
-                Geolocation Radar
+                First Aid Guide
               </h3>
-              <p className="text-white/40 text-xs font-medium leading-relaxed">
-                Tap live browser coordinates to locate active primary care
-                clinics, hospitals, and licensed practitioners within 3
-                kilometers of your locale.
+              <p className="text-white/60 text-xs font-medium leading-relaxed">
+                Immediate, step-by-step instructions for life-threatening
+                emergencies and quick access to emergency services.
               </p>
             </div>
             <Link
-              href="/chat"
+              href="/firstaid"
               className="text-[10px] font-black uppercase tracking-widest text-white/70 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
             >
-              Explore Map <ArrowRight size={12} strokeWidth={3} />
+              View Guide <ArrowRight size={12} strokeWidth={3} />
+            </Link>
+          </div>
+
+          {/* Card 4: History */}
+          <div className="bg-[#080808] border border-white/5 rounded-3xl p-8 shadow-2xl flex flex-col gap-6 group hover:border-white/20 transition-all">
+            <div className="w-12 h-12 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+              <ClipboardList size={22} strokeWidth={2.5} />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-black uppercase italic text-white">
+                Symptom History
+              </h3>
+              <p className="text-white/60 text-xs font-medium leading-relaxed">
+                Track your health journey with localized logs and timeline
+                visualizations to identify patterns over time.
+              </p>
+            </div>
+            <Link
+              href="/history"
+              className="text-[10px] font-black uppercase tracking-widest text-white/70 group-hover:text-white flex items-center gap-2 mt-auto transition-colors"
+            >
+              View History <ArrowRight size={12} strokeWidth={3} />
             </Link>
           </div>
         </div>
@@ -237,14 +264,14 @@ export default function LandingPage() {
           <div className="space-y-4 flex-1">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">
+              <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">
                 Clinical Verification Engine
               </span>
             </div>
             <h3 className="text-2xl font-black uppercase italic tracking-tight">
               The New Era of Personal Triage
             </h3>
-            <p className="text-white/40 text-xs leading-relaxed font-medium">
+            <p className="text-white/60 text-xs leading-relaxed font-medium">
               HealthBuddy combines clinical parameters with natural language,
               executing highly relevant care recommendations in under two
               seconds. Always consult a physician for prescription details.
@@ -252,7 +279,7 @@ export default function LandingPage() {
 
             <div className="pt-4 grid grid-cols-2 gap-4 text-left">
               <div className="border-l-2 border-white/15 pl-4">
-                <p className="text-[9px] text-white/20 font-black uppercase tracking-widest">
+                <p className="text-[10px] text-white/60 font-black uppercase tracking-widest">
                   Retrieval speed
                 </p>
                 <p className="text-lg font-black uppercase text-white">
@@ -260,7 +287,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="border-l-2 border-white/15 pl-4">
-                <p className="text-[9px] text-white/20 font-black uppercase tracking-widest">
+                <p className="text-[10px] text-white/60 font-black uppercase tracking-widest">
                   Medical Accuracy
                 </p>
                 <p className="text-lg font-black uppercase text-white">
@@ -276,7 +303,7 @@ export default function LandingPage() {
                 <Activity size={14} />
               </div>
               <div>
-                <p className="text-[9px] text-white/40 font-black uppercase tracking-widest leading-none">
+                <p className="text-[10px] text-white/60 font-black uppercase tracking-widest leading-none">
                   Diagnostic Triage
                 </p>
                 <span className="text-[11px] font-black text-white uppercase italic leading-none">
@@ -284,7 +311,7 @@ export default function LandingPage() {
                 </span>
               </div>
             </div>
-            <p className="text-[10px] leading-relaxed text-white/35 font-bold uppercase tracking-wider border-t border-white/5 pt-3">
+            <p className="text-[10px] leading-relaxed text-white/60 font-bold uppercase tracking-wider border-t border-white/5 pt-3">
               "Providing structural care suggestions before primary clinic
               visits."
             </p>
@@ -293,12 +320,38 @@ export default function LandingPage() {
       </div>
 
       {/* 5. Minimalist Footer Disclaimer */}
-      <footer className="w-full border-t border-white/5 py-8 text-center bg-black">
-        <p className="text-[10px] text-white/60 font-black uppercase tracking-[0.25em] max-w-lg mx-auto leading-relaxed">
-          Not a substitute for professional medical advice. Always consult a
-          licensed clinician for emergencies.
+      <footer className="w-full max-w-5xl mx-auto px-6 py-12 text-center border-t border-white/5">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 leading-relaxed max-w-2xl mx-auto">
+          Medical Disclaimer: HealthBuddy is a diagnostic triage tool and not a
+          substitute for professional medical advice, diagnosis, or treatment.
+          Always seek the advice of your physician with any questions regarding
+          a medical condition.
         </p>
       </footer>
+
+      {/* Floating Scoreboard Button */}
+      <Link 
+        href="/history"
+        className="fixed bottom-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-5 duration-700"
+      >
+        <div className="bg-[#0d0d0d] rounded-2xl p-4 shadow-2xl border border-white/10 flex items-center gap-4 group hover:scale-105 transition-all cursor-pointer active:scale-95">
+          <div className="w-12 h-12 bg-white/5 text-white rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-white group-hover:text-black transition-colors">
+            <BarChart size={20} strokeWidth={2.5} />
+          </div>
+          <div className="pr-4">
+            <p className="text-[10px] font-black uppercase tracking-widest text-white">View Health Score</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-orange-500 flex items-center gap-1 mt-0.5">
+              <Flame size={10} className="animate-pulse" /> {streak} day streak
+            </p>
+          </div>
+          <div className="absolute -top-1 -right-1">
+             <span className="flex h-3 w-3 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+            </span>
+          </div>
+        </div>
+      </Link>
     </main>
   );
 }
