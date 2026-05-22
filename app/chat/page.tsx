@@ -102,12 +102,12 @@ export default function ChatPage() {
       content: JSON.stringify({
         type: "answer",
         message:
-          "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+          "Hello. I'm medimate. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
       }),
       parsed: {
         type: "answer",
         message:
-          "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+          "Hello. I'm medimate. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
       },
     },
   ]);
@@ -283,12 +283,12 @@ export default function ChatPage() {
         content: JSON.stringify({
           type: "answer",
           message:
-            "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+            "Hello. I'm medimate. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
         }),
         parsed: {
           type: "answer",
           message:
-            "Hello. I'm HealthBuddy. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
+            "Hello. I'm medimate. How are you feeling today? Please describe your symptoms in detail so I can assist you.",
         },
       },
     ]);
@@ -375,7 +375,7 @@ export default function ChatPage() {
 
           <div className="flex items-center gap-3">
             <h1 className="text-lg font-black tracking-tight uppercase italic text-white">
-              HealthBuddy Chat Assistant
+              medimate Chat Assistant
             </h1>
             {/* <span className="bg-white/10 text-white px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border border-white/10 shadow-sm">
             AI Triage
@@ -471,7 +471,7 @@ export default function ChatPage() {
                 </button>
               </div>
               <p className="text-[11px] leading-relaxed text-white/60 font-medium">
-                HealthBuddy leverages advanced safety scoring and guidelines to
+                medimate leverages advanced safety scoring and guidelines to
                 cross-examine reported symptoms. It analyzes severity levels and
                 systematically generates safe care pathway recommendations
                 (e.g., self-care, clinical visits, or immediate ER directions).
@@ -484,7 +484,7 @@ export default function ChatPage() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] font-black uppercase tracking-widest text-white flex items-center gap-2">
                   <Sliders size={12} className="text-white" />
-                  HealthBuddy AI Engine
+                  medimate AI Engine
                 </span>
                 <button
                   onClick={() => setShowModelInfo(false)}

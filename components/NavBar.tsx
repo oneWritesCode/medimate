@@ -36,7 +36,7 @@ const NavBar = () => {
             <Heart size={20} strokeWidth={2.5} fill="currentColor" />
           </div>
           <span className="text-xl font-black tracking-tighter italic uppercase text-white">
-            HealthBuddy
+            medimate
           </span>
         </Link>
       </div>

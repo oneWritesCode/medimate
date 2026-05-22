@@ -241,7 +241,7 @@ export default function HistoryPage() {
       },
     ];
 
-    localStorage.setItem("healthbuddy_symptoms", JSON.stringify(mockData));
+    localStorage.setItem("medimate_symptoms", JSON.stringify(mockData));
   };
 
   useEffect(() => {
@@ -384,7 +384,7 @@ export default function HistoryPage() {
     if (confirm("Are you sure you want to delete this log?")) {
       const updated = logs.filter((l) => l.id !== id);
       setLogs(updated);
-      localStorage.setItem("healthbuddy_symptoms", JSON.stringify(updated));
+      localStorage.setItem("medimate_symptoms", JSON.stringify(updated));
       setChartData(getLast14Days());
       setStreak(getStreak());
     }
@@ -549,7 +549,7 @@ export default function HistoryPage() {
                       "Reset health history data? This will clear all logged symptoms.",
                     )
                   ) {
-                    localStorage.removeItem("healthbuddy_symptoms");
+                    localStorage.removeItem("medimate_symptoms");
                     setLogs([]);
                     setChartData(getLast14Days());
                     setStreak(0);

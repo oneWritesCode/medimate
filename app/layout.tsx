@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HealthBuddy - Your Healthcare Assistant",
+  title: "medimate - Your Healthcare Assistant",
   description: "Stop searching for symptoms. Start getting answers.",
 };
 

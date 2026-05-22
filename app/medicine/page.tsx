@@ -211,8 +211,8 @@ export default function MedicineAnalyzer() {
   //   if (navigator.share) {
   //     try {
   //       await navigator.share({
-  //         title: `HealthBuddy: ${result.name}`,
-  //         text: `Check out clinical details for ${result.name} (${result.genericName}) on HealthBuddy.`,
+  //         title: `medimate: ${result.name}`,
+  //         text: `Check out clinical details for ${result.name} (${result.genericName}) on medimate.`,
   //         url: shareUrl,
   //       });
   //       setIsShared(true);
@@ -235,7 +235,7 @@ export default function MedicineAnalyzer() {
     if (!result) return;
     const content = `
 =========================================
-HEALTHBUDDY CLINICAL MEDICINE INFO CARD
+medimate CLINICAL MEDICINE INFO CARD
 =========================================
 Medicine Name: ${result.name.toUpperCase()}
 Generic Name:  ${result.genericName}
@@ -259,7 +259,7 @@ Side Effects & Important Warnings:
 - Storage Info:  ${result.storage}
 
 -----------------------------------------
-Verified Clinical Data • HealthBuddy AI
+Verified Clinical Data • medimate AI
 Doctor Reviewer: Dr. Roberto Jordan (MD)
 =========================================
     `.trim();
@@ -456,7 +456,7 @@ Doctor Reviewer: Dr. Roberto Jordan (MD)
 
                     <div className="flex items-start justify-between z-10">
                       <span className="text-[7px] font-black uppercase tracking-widest text-white/60">
-                        HealthBuddy RX
+                        medimate RX
                       </span>
                       <Heart
                         size={12}

@@ -57,7 +57,7 @@ export default function LandingPage() {
             />
           </div>
           <span className="text-lg font-black tracking-tighter italic uppercase text-white">
-            HealthBuddy
+            medimate
           </span>
         </Link>
 
@@ -101,7 +101,7 @@ export default function LandingPage() {
           </div>
           <div className="absolute -top-3 -right-15 bg-white text-black px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-lg border border-white/10 flex items-center gap-1 animate-bounce">
             <Sparkles size={8} fill="currentColor" />
-            <span>HealthBuddy v1.2</span>
+            <span>medimate v1.2</span>
           </div>
         </div>
 
@@ -272,7 +272,7 @@ export default function LandingPage() {
               The New Era of Personal Triage
             </h3>
             <p className="text-white/60 text-xs leading-relaxed font-medium">
-              HealthBuddy combines clinical parameters with natural language,
+              medimate combines clinical parameters with natural language,
               executing highly relevant care recommendations in under two
               seconds. Always consult a physician for prescription details.
             </p>
@@ -322,7 +322,7 @@ export default function LandingPage() {
       {/* 5. Minimalist Footer Disclaimer */}
       <footer className="w-full max-w-5xl mx-auto px-6 py-12 text-center border-t border-white/5">
         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 leading-relaxed max-w-2xl mx-auto">
-          Medical Disclaimer: HealthBuddy is a diagnostic triage tool and not a
+          Medical Disclaimer: medimate is a diagnostic triage tool and not a
           substitute for professional medical advice, diagnosis, or treatment.
           Always seek the advice of your physician with any questions regarding
           a medical condition.

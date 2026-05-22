@@ -9,7 +9,7 @@ export function saveSymptomLog(data: {
   if (typeof window === 'undefined') return;
 
   const existing = JSON.parse( 
-    localStorage.getItem("healthbuddy_symptoms") || "[]" 
+    localStorage.getItem("medimate_symptoms") || "[]" 
   ) 
   
   const today = new Date().toISOString().split("T")[0] 
@@ -37,12 +37,12 @@ export function saveSymptomLog(data: {
     existing.unshift(newLog) 
   } 
   
-  localStorage.setItem("healthbuddy_symptoms", JSON.stringify(existing)) 
+  localStorage.setItem("medimate_symptoms", JSON.stringify(existing)) 
 } 
  
 export function getSymptomLogs() { 
   if (typeof window === 'undefined') return [];
-  return JSON.parse(localStorage.getItem("healthbuddy_symptoms") || "[]") 
+  return JSON.parse(localStorage.getItem("medimate_symptoms") || "[]") 
 } 
  
 export function getLast14Days() { 
