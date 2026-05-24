@@ -721,23 +721,23 @@ export default function LandingPage() {
           href="/history"
           className="fixed bottom-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-5 duration-700"
         >
-          <div className="bg-[#0d0d0d] rounded-2xl p-4 shadow-2xl flex items-center gap-4 group hover:scale-105 transition-all cursor-pointer active:scale-95">
-            <div className="w-12 h-12 bg-white/5 text-white rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-white group-hover:text-black transition-colors">
+          <div className="bg-[#000] border border-white/15 rounded-2xl p-2 shadow-2xl flex items-center gap-2 group hover:scale-105 transition-all cursor-pointer active:scale-95">
+            <div className="w-10 h-10 text-white rounded-xl flex items-center justify-center group-hover:text-black transition-colors">
               <BarChart size={20} strokeWidth={2.5} />
             </div>
-            <div className="pr-4">
+            <div className="pr-2">
               <p className="text-[10px] font-black uppercase tracking-widest text-white">
                 View Health Score
               </p>
-              <p className="text-[10px] font-black uppercase tracking-widest text-orange-500 flex items-center gap-1 mt-0.5">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-1 mt-0.5">
                 <Flame size={10} className="animate-pulse" /> {streak} day
                 streak
               </p>
             </div>
-            <div className="absolute -top-1 -right-1">
-              <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+            <div className="absolute -top-1 right-0">
+              <span className="flex h-3 w-3 relative fle items-center justify-center">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
               </span>
             </div>
           </div>
