@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { getStreak } from "@/lib/historyUtils";
 import Lines from "@/components/Lines";
+import Footer from "@/components/Footer";
 
 export default function LandingPage() {
   const [email, setEmail] = useState("");
@@ -46,7 +47,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <div className="w-full h-full fixed z-0 opacity-70">
+      <div className="w-full h-full fixed z-0 opacity-70 scale-150 bg-black">
         <Lines />
       </div>
       <main className="min-h-screen flex flex-col items-center justify-between text-white selection:bg-white selection:text-black z-50">
@@ -176,7 +177,7 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-6 flex flex-col items-center text-center justify-between">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-6 flex flex-col items-center text-center justify-between">
               <div className="text-[3rem] font-bold text-white leading-none mb-4">
                 75%
               </div>
@@ -187,7 +188,7 @@ export default function LandingPage() {
                 WHO India Health Report
               </p>
             </div>
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-6 flex flex-col items-center text-center justify-between">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-6 flex flex-col items-center text-center justify-between">
               <div className="text-[3rem] font-bold text-white leading-none mb-4">
                 62%
               </div>
@@ -198,7 +199,7 @@ export default function LandingPage() {
                 ICMR Survey 2023
               </p>
             </div>
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-6 flex flex-col items-center text-center justify-between">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-6 flex flex-col items-center text-center justify-between">
               <div className="text-[3rem] font-bold text-white leading-none mb-4">
                 5L+
               </div>
@@ -211,7 +212,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-white rounded-lg p-6 text-white font-medium text-lg leading-relaxed">
+          <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-white rounded-lg p-6 text-white font-medium text-lg leading-relaxed">
             Simple conditions become serious. Money wasted on wrong medicines.
             Doctors visited too late &mdash; or not at all.
           </div>
@@ -233,7 +234,7 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
               <p className="text-[10px] text-white/50 mb-1">01</p>
               <p className="text-white font-bold text-sm">Symptoms</p>
             </div>
@@ -242,7 +243,7 @@ export default function LandingPage() {
             </div>
             <div className="text-white/50 font-bold md:hidden">&darr;</div>
 
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
               <p className="text-[10px] text-white/50 mb-1">02</p>
               <p className="text-white font-bold text-sm">AI Diagnosis</p>
             </div>
@@ -251,7 +252,7 @@ export default function LandingPage() {
             </div>
             <div className="text-white/50 font-bold md:hidden">&darr;</div>
 
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
               <p className="text-[10px] text-white/50 mb-1">03</p>
               <p className="text-white font-bold text-sm">Medicine</p>
             </div>
@@ -260,7 +261,7 @@ export default function LandingPage() {
             </div>
             <div className="text-white/50 font-bold md:hidden">&darr;</div>
 
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
               <p className="text-[10px] text-white/50 mb-1">04</p>
               <p className="text-white font-bold text-sm">Doctor</p>
             </div>
@@ -269,7 +270,7 @@ export default function LandingPage() {
             </div>
             <div className="text-white/50 font-bold md:hidden">&darr;</div>
 
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-4 w-full md:w-auto min-w-[120px]">
               <p className="text-[10px] text-white/50 mb-1">05</p>
               <p className="text-white font-bold text-sm">Recovery</p>
             </div>
@@ -291,18 +292,18 @@ export default function LandingPage() {
           {/* Feature 1 */}
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="w-full md:w-1/2">
-              <div className="bg-[#111111] border border-white/15 rounded-lg p-6">
+              <div className="bg-[#030303] border border-white/10 rounded-lg p-6">
                 <div className="bg-[#222222] rounded-lg p-3 text-white/90 text-sm w-fit mb-4">
                   How long have you had the fever?
                 </div>
                 <div className="flex flex-col gap-2">
-                  <button className="bg-[#111111] border border-white/15 rounded-lg p-3 text-white text-sm text-left hover:bg-white/5 transition-colors">
+                  <button className="bg-[#030303] border border-white/10 rounded-lg p-3 text-white text-sm text-left hover:bg-white/5 transition-colors">
                     1 Day
                   </button>
                   <button className="bg-white text-black border border-white rounded-lg p-3 text-sm text-left font-bold transition-colors">
                     2-3 Days
                   </button>
-                  <button className="bg-[#111111] border border-white/15 rounded-lg p-3 text-white text-sm text-left hover:bg-white/5 transition-colors">
+                  <button className="bg-[#030303] border border-white/10 rounded-lg p-3 text-white text-sm text-left hover:bg-white/5 transition-colors">
                     More than a week
                   </button>
                 </div>
@@ -318,7 +319,7 @@ export default function LandingPage() {
                 Start knowing.
               </h3>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-red-500 rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-red-500 rounded-lg p-5">
                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-2">
                   The Problem
                 </p>
@@ -328,7 +329,7 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-white rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-white rounded-lg p-5">
                 <p className="text-[10px] text-white font-bold uppercase tracking-widest mb-2">
                   The Solution
                 </p>
@@ -350,7 +351,7 @@ export default function LandingPage() {
           {/* Feature 2 */}
           <div className="flex flex-col md:flex-row-reverse items-center gap-12">
             <div className="w-full md:w-1/2">
-              <div className="bg-[#111111] border border-white/15 rounded-lg p-6 space-y-4">
+              <div className="bg-[#030303] border border-white/10 rounded-lg p-6 space-y-4">
                 <p className="text-white font-bold text-xl uppercase">
                   PARACETAMOL 650MG
                 </p>
@@ -358,13 +359,13 @@ export default function LandingPage() {
                   After food &middot; Every 6 hours
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-[#222222] border border-white/15 text-white text-xs px-3 py-1 rounded-full">
+                  <span className="bg-[#222222] border border-white/10 text-white text-xs px-3 py-1 rounded-full">
                     Fever
                   </span>
-                  <span className="bg-[#222222] border border-white/15 text-white text-xs px-3 py-1 rounded-full">
+                  <span className="bg-[#222222] border border-white/10 text-white text-xs px-3 py-1 rounded-full">
                     Headache
                   </span>
-                  <span className="bg-[#222222] border border-white/15 text-white text-xs px-3 py-1 rounded-full">
+                  <span className="bg-[#222222] border border-white/10 text-white text-xs px-3 py-1 rounded-full">
                     Pain Relief
                   </span>
                 </div>
@@ -372,13 +373,13 @@ export default function LandingPage() {
                   Do not exceed 4 tablets per day
                 </p>
                 <div className="flex flex-col gap-2 pt-2">
-                  <button className="bg-[#111111] border border-white/15 rounded-lg p-3 text-white text-xs font-bold text-center hover:bg-white/5 transition-colors">
+                  <button className="bg-[#030303] border border-white/10 rounded-lg p-3 text-white text-xs font-bold text-center hover:bg-white/5 transition-colors">
                     1MG
                   </button>
-                  <button className="bg-[#111111] border border-white/15 rounded-lg p-3 text-white text-xs font-bold text-center hover:bg-white/5 transition-colors">
+                  <button className="bg-[#030303] border border-white/10 rounded-lg p-3 text-white text-xs font-bold text-center hover:bg-white/5 transition-colors">
                     PHARMEASY
                   </button>
-                  <button className="bg-[#111111] border border-white/15 rounded-lg p-3 text-white text-xs font-bold text-center hover:bg-white/5 transition-colors">
+                  <button className="bg-[#030303] border border-white/10 rounded-lg p-3 text-white text-xs font-bold text-center hover:bg-white/5 transition-colors">
                     NETMEDS
                   </button>
                 </div>
@@ -394,7 +395,7 @@ export default function LandingPage() {
                 putting in your body.
               </h3>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-red-500 rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-red-500 rounded-lg p-5">
                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-2">
                   The Problem
                 </p>
@@ -404,7 +405,7 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-white rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-white rounded-lg p-5">
                 <p className="text-[10px] text-white font-bold uppercase tracking-widest mb-2">
                   The Solution
                 </p>
@@ -425,11 +426,11 @@ export default function LandingPage() {
           {/* Feature 3 */}
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="w-full md:w-1/2">
-              <div className="bg-[#111111] border border-white/15 rounded-lg p-6 space-y-6">
+              <div className="bg-[#030303] border border-white/10 rounded-lg p-6 space-y-6">
                 <p className="text-white text-xs font-bold uppercase tracking-widest">
                   Health Score &mdash; Last 14 Days
                 </p>
-                <div className="h-32 w-full flex items-end justify-between border-b border-white/15 pb-2">
+                <div className="h-32 w-full flex items-end justify-between border-b border-white/10 pb-2">
                   <div className="w-[10%] bg-white/20 h-[40%] rounded-t-sm"></div>
                   <div className="w-[10%] bg-white/30 h-[50%] rounded-t-sm"></div>
                   <div className="w-[10%] bg-white/40 h-[30%] rounded-t-sm"></div>
@@ -455,7 +456,7 @@ export default function LandingPage() {
                 like you track fitness.
               </h3>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-red-500 rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-red-500 rounded-lg p-5">
                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-2">
                   The Problem
                 </p>
@@ -466,7 +467,7 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-white rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-white rounded-lg p-5">
                 <p className="text-[10px] text-white font-bold uppercase tracking-widest mb-2">
                   The Solution
                 </p>
@@ -488,7 +489,7 @@ export default function LandingPage() {
           {/* Feature 4 */}
           <div className="flex flex-col md:flex-row-reverse items-center gap-12">
             <div className="w-full md:w-1/2">
-              <div className="bg-[#111111] border border-white/15 border-l-[4px] border-l-red-500 rounded-lg p-6 space-y-4">
+              <div className="bg-[#030303] border border-white/10 border-l-[4px] border-l-red-500 rounded-lg p-6 space-y-4">
                 <p className="text-white font-bold text-2xl uppercase">
                   HEART ATTACK
                 </p>
@@ -524,7 +525,7 @@ export default function LandingPage() {
                 seconds matter.
               </h3>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-red-500 rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-red-500 rounded-lg p-5">
                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-2">
                   The Problem
                 </p>
@@ -535,7 +536,7 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-[#111111] border border-white/15 border-l-[3px] border-l-white rounded-lg p-5">
+              <div className="bg-[#030303] border border-white/10 border-l-[3px] border-l-white rounded-lg p-5">
                 <p className="text-[10px] text-white font-bold uppercase tracking-widest mb-2">
                   The Solution
                 </p>
@@ -569,13 +570,13 @@ export default function LandingPage() {
             <table className="w-full text-left min-w-[600px] border-collapse">
               <thead>
                 <tr>
-                  <th className="bg-[#222222] text-white font-medium p-4 border border-white/10 rounded-tl-lg">
+                  <th className="bg-[#1b1b1b] text-white font-medium p-4 border border-white/10 rounded-tl-lg">
                     Feature
                   </th>
-                  <th className="bg-[#222222] text-white font-medium p-4 border border-white/10 text-center">
+                  <th className="bg-[#1b1b1b] text-white font-medium p-4 border border-white/10 text-center">
                     ChatGPT
                   </th>
-                  <th className="bg-[#222222] text-white font-medium p-4 border border-white/10 text-center rounded-tr-lg">
+                  <th className="bg-[#1b1b1b] text-white font-medium p-4 border border-white/10 text-center rounded-tr-lg">
                     Medimate
                   </th>
                 </tr>
@@ -599,13 +600,13 @@ export default function LandingPage() {
                   ["Price", "Paid", "Free"],
                 ].map((row, idx) => (
                   <tr key={idx}>
-                    <td className="bg-[#111111] text-white/80 p-4 border border-white/10">
+                    <td className="bg-[#030303] text-white/80 p-4 border border-white/10">
                       {row[0]}
                     </td>
-                    <td className="bg-[#111111] text-white/50 p-4 border border-white/10 text-center">
+                    <td className="bg-[#000000] text-white/50 p-4 border border-white/10 text-center">
                       {row[1]}
                     </td>
-                    <td className="bg-[#1a1a1a] text-white p-4 border border-white/10 text-center font-medium">
+                    <td className="bg-[#1b1b1b] text-white p-4 border border-white/10 text-center font-medium">
                       {row[2]}
                     </td>
                   </tr>
@@ -637,7 +638,7 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row gap-6 relative">
             <div className="hidden md:block absolute top-1/2 left-0 w-full border-t border-dashed border-white/20 -z-10 transform -translate-y-1/2"></div>
 
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-8 flex-1 text-center relative z-10">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-8 flex-1 text-center relative z-10">
               <div className="text-4xl font-bold text-white/20 mb-4">01</div>
               <h3 className="text-white font-bold uppercase mb-3">
                 Describe your symptoms
@@ -648,7 +649,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-8 flex-1 text-center relative z-10">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-8 flex-1 text-center relative z-10">
               <div className="text-4xl font-bold text-white/20 mb-4">02</div>
               <h3 className="text-white font-bold uppercase mb-3">
                 Get AI guidance
@@ -659,7 +660,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-white/15 rounded-lg p-8 flex-1 text-center relative z-10">
+            <div className="bg-[#030303] border border-white/10 rounded-lg p-8 flex-1 text-center relative z-10">
               <div className="text-4xl font-bold text-white/20 mb-4">03</div>
               <h3 className="text-white font-bold uppercase mb-3">
                 Take action
@@ -673,7 +674,7 @@ export default function LandingPage() {
         </div>
 
         {/* Section 6: Final CTA */}
-        <div className="w-full bg-[#0d0d0d] border-t border-white/10 py-20 px-6 mt-8">
+        <div className="w-full bg-[#040404] border-t border-white/10 py-20 px-6 mt-8">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl md:text-5xl font-black uppercase italic text-white tracking-tight">
               Your health cannot wait.
@@ -706,21 +707,21 @@ export default function LandingPage() {
         </div>
 
         {/* 5. Minimalist Footer Disclaimer */}
-        <footer className="w-full max-w-5xl mx-auto px-6 py-12 text-center border-t border-white/5">
+        {/* <footer className="w-full max-w-5xl mx-auto px-6 py-12 text-center border-t border-white/5">
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 leading-relaxed max-w-2xl mx-auto">
             Medical Disclaimer: medimate is a diagnostic triage tool and not a
             substitute for professional medical advice, diagnosis, or treatment.
             Always seek the advice of your physician with any questions
             regarding a medical condition.
           </p>
-        </footer>
+        </footer> */}
 
         {/* Floating Scoreboard Button */}
         <Link
           href="/history"
           className="fixed bottom-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-5 duration-700"
         >
-          <div className="bg-[#0d0d0d] rounded-2xl p-4 shadow-2xl border border-white/10 flex items-center gap-4 group hover:scale-105 transition-all cursor-pointer active:scale-95">
+          <div className="bg-[#0d0d0d] rounded-2xl p-4 shadow-2xl flex items-center gap-4 group hover:scale-105 transition-all cursor-pointer active:scale-95">
             <div className="w-12 h-12 bg-white/5 text-white rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-white group-hover:text-black transition-colors">
               <BarChart size={20} strokeWidth={2.5} />
             </div>
@@ -741,6 +742,8 @@ export default function LandingPage() {
             </div>
           </div>
         </Link>
+        <Footer />
+
       </main>
     </>
   );
