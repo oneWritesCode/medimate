@@ -23,7 +23,7 @@ const NavBar = () => {
   const navItems = [
     { href: "/chat", icon: MessageSquare, name: "Chat" },
     { href: "/medicine", icon: Pill, name: "Medicine" },
-    { href: "/history", icon: ClipboardList, name: "health History" },
+    { href: "/history", icon: ClipboardList, name: "Health History" },
     { href: "/firstaid", icon: ShieldAlert, name: "First Aid" },
   ];
 

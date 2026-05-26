@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
           {/* Column 1: Brand */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-white font-bold text-lg">HealthBuddy</h3>
+            <h3 className="text-white font-bold text-lg italic uppercase tracking-tighter">medimate</h3>
             <p className="text-white/60 text-sm">
               Your personal healthcare companion built for India
             </p>
@@ -71,7 +71,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-[10px]">
-            &copy; 2026 HealthBuddy. All rights reserved.
+            &copy; 2026 medimate. All rights reserved.
           </p>
           <p className="text-white/40 text-[10px]">
             Built for Beyond Tomorrow Hackathon
