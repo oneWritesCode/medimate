@@ -15,6 +15,11 @@ import {
   ClipboardList,
   Flame,
   BarChart,
+  Check,
+  X,
+  Database,
+  Globe,
+  Stethoscope as TriageIcon,
 } from "lucide-react";
 import { getStreak } from "@/lib/historyUtils";
 import Lines from "@/components/Lines";
@@ -500,6 +505,161 @@ export default function LandingPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* Section 4: Why MediMate */}
+        <section className="w-full bg-[#050505] py-24 border-y border-white/5">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <motion.div 
+              {...fadeInUp}
+              className="text-center mb-16 space-y-4"
+            >
+              <h2 className="text-[10px] font-black uppercase tracking-[0.25em] text-white/60">
+                The MediMate Advantage
+              </h2>
+              <p className="text-3xl md:text-4xl font-black uppercase italic tracking-tight text-white leading-none">
+                Why MediMate over a regular chatbot?
+              </p>
+              <p className="text-white/60 text-sm max-w-2xl mx-auto font-medium">
+                Most AI chatbots give generic answers. MediMate is built specifically for healthcare.
+              </p>
+            </motion.div>
+
+            {/* Comparison Table */}
+            <motion.div 
+              {...fadeInUp}
+              className="overflow-x-auto rounded-3xl border border-white/10 bg-[#030303] shadow-2xl mb-24"
+            >
+              <table className="w-full text-left border-collapse min-w-[800px] md:min-w-0">
+                <thead>
+                  <tr className="bg-[#0a0a0a] border-b border-white/10">
+                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-white/70 w-1/4">Feature</th>
+                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-white/70 w-[37.5%] bg-white/[0.02]">Regular Chatbot (GPT/Gemini)</th>
+                    <th className="p-4 text-[10px] font-black uppercase tracking-widest text-white w-[37.5%] bg-blue-500/[0.05]">MediMate</th>
+                  </tr>
+                </thead>
+                <tbody className="text-xs font-medium">
+                  {[
+                    {
+                      feature: "Medical Knowledge",
+                      bot: "General internet knowledge, can hallucinate",
+                      medimate: "Backed by a curated database of 50+ verified conditions",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Medicine Suggestions",
+                      bot: "Generic or western medicines",
+                      medimate: "India-specific medicines available on 1mg, PharmEasy, Netmeds",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Symptom Analysis",
+                      bot: "Free text, unstructured",
+                      medimate: "Guided step-by-step MCQ flow like a real doctor intake",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Response Format",
+                      bot: "Long paragraphs, hard to read",
+                      medimate: "Structured: condition, remedies, medicines, when to see doctor",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Medicine Information",
+                      bot: "Basic description only",
+                      medimate: "Dosage, timing, side effects, warnings, storage, interactions",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Emergency Guidance",
+                      bot: "No dedicated emergency section",
+                      medimate: "Built-in First Aid guide with step by step emergency steps",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Health Tracking",
+                      bot: "No memory between sessions",
+                      medimate: "Tracks your symptoms over time with visual health graph",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Doctor Referral",
+                      bot: "No",
+                      medimate: "Suggests nearby clinics when condition needs medical attention",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Prescription Warning",
+                      bot: "Sometimes skipped",
+                      medimate: "Always flags medicines that require a prescription",
+                      status: [false, true]
+                    },
+                    {
+                      feature: "Designed For",
+                      bot: "Everyone, everywhere",
+                      medimate: "Indians — language, medicines, emergency numbers, local context",
+                      status: [false, true]
+                    }
+                  ].map((row, idx) => (
+                    <tr key={idx} className={`border-b border-white/5 last:border-0 ${idx % 2 === 0 ? "bg-transparent" : "bg-white/[0.01]"}`}>
+                      <td className="p-3 text-white/90 font-bold uppercase tracking-tight">{row.feature}</td>
+                      <td className="p-3 text-white/70 bg-white/[0.02] flex items-start gap-3">
+                        <X size={14} className="shrink-0" />
+                        <span>{row.bot}</span>
+                      </td>
+                      <td className="p-3 text-white bg-blue-500/[0.05]">
+                        <div className="flex items-start gap-3">
+                          <Check size={14} className="shrink-0" />
+                          <span className="font-bold">{row.medimate}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </motion.div>
+
+            {/* Highlight Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Verified Medical Database",
+                  body: "Unlike general AI, MediMate references a hand-curated database of conditions, symptoms, and medicines before every response. This keeps answers grounded in real medical data.",
+                  icon: Database,
+                  borderColor: "border-t-blue-500"
+                },
+                {
+                  title: "Built for India",
+                  body: "MediMate suggests medicines you can actually buy — on 1mg, PharmEasy, and Netmeds. Emergency numbers, local context, and Indian brand names throughout.",
+                  icon: Globe,
+                  borderColor: "border-t-emerald-500"
+                },
+                {
+                  title: "Triage, Not Guesswork",
+                  body: "MediMate knows when to refer you to a doctor. For serious symptoms it never guesses — it tells you exactly which type of specialist to visit and how urgently.",
+                  icon: TriageIcon,
+                  borderColor: "border-t-purple-500"
+                }
+              ].map((card, idx) => (
+                <motion.div 
+                  key={idx}
+                  {...fadeInUp}
+                  whileHover={shouldReduceMotion ? {} : { y: -5 }}
+                  className={` rounded-[2rem] p-4 shadow-xl border-t-4 ${card.borderColor} text-white border border-white/15 flex flex-col items-start gap-4 transition-all`}
+                >
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner">
+                    <card.icon size={24} strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-xl text-white uppercase italic tracking-tighter leading-none">
+                    {card.title}
+                  </h3>
+                  <p className="text-white/60 text-sm font-medium leading-relaxed">
+                    {card.body}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Floating Scoreboard Button */}
         <motion.div
