@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MediMate - Your Intelligent Healthcare Assistant
 
-## Getting Started
+MediMate is a specialized AI-powered healthcare platform designed specifically for the Indian context. Unlike general-purpose chatbots, MediMate provides structured, clinically-guided symptom analysis, medicine information, and emergency guidance.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. Symptom Checker (AI Triage)
+- **Guided Conversation**: Uses a step-by-step MCQ flow similar to a real doctor's intake form.
+- **Clinical Triage**: Narrows down possible conditions and provides actionable next steps.
+- **Privacy First**: Encrypted and private triage sessions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Medicine Analyzer
+- **India-Specific Database**: Search for medicines available in the Indian market (e.g., Dolo 650, Combiflam).
+- **Comprehensive Info**: Get details on dosage, timing, side effects, warnings, and storage.
+- **Purchase Links**: Direct links to trusted Indian pharmacies like 1mg, PharmEasy, and Netmeds.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Emergency First Aid Guide
+- **Critical Protocols**: Step-by-step guidance for emergencies like heart attacks, choking, and burns.
+- **Panic Mitigation**: Built-in "Emergency Calm Regulator" (Box Breathing Pacer) to help users stay focused during crises.
+- **Local Context**: Integrated Indian emergency numbers (108, 100, 101).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Health History & Tracking
+- **Visual Timeline**: Automatically tracks symptom logs over time.
+- **Health Score**: A visual graph showing health trends over the last 14 days.
+- **Streak Tracking**: Encourages consistent health monitoring.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework**: [Next.js 16.2.6](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **AI Engine**: [Groq SDK](https://groq.com/) (using `llama-3.3-70b-versatile` model)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Content Rendering**: [React Markdown](https://github.com/remarkjs/react-markdown)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 💻 Running Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- npm, yarn, pnpm, or bun
+- A Groq API Key (Get it from [Groq Cloud](https://console.groq.com/))
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone <your-repository-url>
+   cd medimate
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set up Environment Variables**:
+   Create a `.env.local` file in the root directory and add your API key:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
+
+4. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+5. **Access the app**:
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 📁 Project Structure
+
+- `/app`: Next.js App Router pages and API routes.
+- `/components`: Reusable UI components (NavBar, Footer, ChatBubble, etc.).
+- `/lib`: Utility functions, data constants (disease database, first aid data), and system prompts.
+- `/public`: Static assets like icons and images.
+
+---
+
+## ⚠️ Disclaimer
+
+MediMate provides general health information and is for educational purposes only. It is **not** a substitute for professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare provider for any medical concerns. In case of a serious emergency, dial **108** immediately.
+
+---
+Built for the **Beyond Tomorrow Hackathon**.
